@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text} from 'react-native';
+import { Navigation } from './navigation';
 
 const App = (): JSX.Element => {
-  return <Text>Hello</Text>;
+  return <Navigation />;
 };
 
 export default App;
