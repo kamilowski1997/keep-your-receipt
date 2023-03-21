@@ -4,6 +4,7 @@ import { Text } from 'react-native';
 
 const HomeScreen = () => {
   const { t } = useTranslation('common');
+
   return <Text>{t('hello')}</Text>;
 };
 
