@@ -10,5 +10,5 @@ module.exports = {
   env: {
     'react-native/react-native': true,
   },
-  rules: {},
+  rules: { '@typescript-eslint/no-unused-vars': 1 },
 };
