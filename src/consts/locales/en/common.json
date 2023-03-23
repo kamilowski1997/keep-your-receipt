@@ -1,1 +1,8 @@
-{ "hello": "Hello" }
+{
+  "hello": "Hello",
+  "screenTitles": {
+    "home": "Receipts",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  }
+}

@@ -1,11 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { AuthStackComponent } from './navigators/AuthStack';
 import { MainStackComponent } from './navigators/MainStack';
 
 const Navigation = () => {
+  //TODO CHANGE MOCKED isAuthenticated
+  const isAuthenticated = true;
+
   return (
     <NavigationContainer>
-      <MainStackComponent />
+      {isAuthenticated ? <MainStackComponent /> : <AuthStackComponent />}
     </NavigationContainer>
   );
 };

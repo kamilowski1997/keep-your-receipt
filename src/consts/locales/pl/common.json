@@ -1,1 +1,8 @@
-{ "hello": "Witaj" }
+{
+  "hello": "Witaj",
+  "screenTitles": {
+    "home": "Twoje paragony",
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się"
+  }
+}

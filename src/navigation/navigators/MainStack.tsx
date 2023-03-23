@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import HomeScreen from '../../screens/HomeScreen/HomeScreen';
+import { useTranslation } from 'react-i18next';
+import HomeScreen from '../../screens/MainStack/HomeScreen/HomeScreen';
 
 export type MainStackParamList = {
   HOME_SCREEN: undefined;
@@ -9,12 +10,16 @@ export type MainStackParamList = {
 const MainStack = createNativeStackNavigator<MainStackParamList>();
 
 export const MainStackComponent = () => {
+  const { t: screenTitlesT } = useTranslation('common', {
+    keyPrefix: 'screenTitles',
+  });
+
   return (
     <MainStack.Navigator>
       <MainStack.Screen
         name={'HOME_SCREEN'}
         component={HomeScreen}
-        options={{ title: 'Home Screen' }}
+        options={{ title: screenTitlesT('home') || 'Home' }}
       />
     </MainStack.Navigator>
   );
