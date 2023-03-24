@@ -5,7 +5,7 @@ import { MainStackComponent } from './navigators/MainStack';
 
 const Navigation = () => {
   //TODO CHANGE MOCKED isAuthenticated
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <NavigationContainer>

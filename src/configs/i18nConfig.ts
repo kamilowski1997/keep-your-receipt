@@ -10,10 +10,14 @@ import { getDeviceLocaleShortCode } from '../utils/getDeviceLocales';
 
 export const DEFAULT_NAMESPACE = 'common';
 
-declare module 'react-i18next' {
-  interface Resources {
-    common: typeof plCommon;
-    auth: typeof plAuth;
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    defaultNS: typeof DEFAULT_NAMESPACE;
+    resources: {
+      common: typeof plCommon;
+      auth: typeof plAuth;
+    };
+    returnNull: false;
   }
 }
 
@@ -51,6 +55,7 @@ const initOptions: InitOptions = {
   ns: ['common', 'auth'],
   defaultNS: DEFAULT_NAMESPACE,
   resources,
+  returnNull: false,
 };
 
 i18next
