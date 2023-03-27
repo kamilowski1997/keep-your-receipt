@@ -10,7 +10,7 @@ const SignInScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputsView}>
+      <View style={styles.inputsContainer}>
         <TextInput mode="outlined" placeholder={t('email')} />
         <TextInput
           mode="outlined"
@@ -38,5 +38,5 @@ const styles = StyleSheet.create({
   signInButton: {
     width: '100%',
   },
-  inputsView: {},
+  inputsContainer: {},
 });
