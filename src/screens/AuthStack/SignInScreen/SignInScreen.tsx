@@ -19,13 +19,21 @@ const SignInScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>
-        <TextInput mode="outlined" placeholder={t('email')} />
+        <TextInput
+          mode="outlined"
+          placeholder={t('email')}
+          style={styles.textInput}
+        />
         <TextInput
           mode="outlined"
           placeholder={t('password')}
           secureTextEntry
+          style={styles.textInput}
         />
-        <Button mode={'text'} onPress={navigateToSignUp}>
+        <Button
+          mode={'text'}
+          onPress={navigateToSignUp}
+          style={styles.navigateToSignUpButton}>
           {t('dontHaveAnAccountYet')}
         </Button>
       </View>
@@ -49,5 +57,15 @@ const styles = StyleSheet.create({
   signInButton: {
     width: '100%',
   },
-  inputsContainer: {},
+  inputsContainer: {
+    alignItems: 'center',
+    marginTop: 32,
+  },
+  textInput: {
+    width: '100%',
+    marginBottom: 16,
+  },
+  navigateToSignUpButton: {
+    marginTop: 16,
+  },
 });
