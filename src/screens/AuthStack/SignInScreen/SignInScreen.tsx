@@ -4,9 +4,17 @@ import Button from '../../../components/common/Button/Button';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
 import { TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
 
-const SignInScreen = () => {
+type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_IN_SCREEN'>;
+
+const SignInScreen = ({ navigation }: Props) => {
   const { t } = useTranslation('auth');
+
+  const navigateToSignUp = () => {
+    navigation.navigate('SIGN_UP_SCREEN');
+  };
 
   return (
     <View style={styles.container}>
@@ -17,6 +25,9 @@ const SignInScreen = () => {
           placeholder={t('password')}
           secureTextEntry
         />
+        <Button mode={'text'} onPress={navigateToSignUp}>
+          {t('DontHaveAnAccountYet')}
+        </Button>
       </View>
 
       <Button mode={'contained'} onPress={() => {}} style={styles.signInButton}>
