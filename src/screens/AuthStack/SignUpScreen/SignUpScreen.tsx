@@ -31,7 +31,7 @@ const SignUpScreen = ({ navigation }: Props) => {
           secureTextEntry
         />
         <Button mode={'text'} onPress={navigateToSignIn}>
-          {t('AlreadyHaveAnAccount')}
+          {t('alreadyHaveAnAccount')}
         </Button>
       </View>
 
