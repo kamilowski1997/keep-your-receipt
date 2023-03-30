@@ -7,10 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
 import SecureTextInput from '../../../components/common/SecureTextInput/SecureTextInput';
+import { useDispatch } from '../../../redux/store';
+import { actions as authActions } from '../../../redux/slices/auth';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
 const SignUpScreen = ({ navigation }: Props) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation('auth');
 
   const [email, setEmail] = useState('');
@@ -22,9 +25,8 @@ const SignUpScreen = ({ navigation }: Props) => {
   };
 
   const onSignUpButtonPress = () => {
-    console.log(email);
-    console.log(password);
-    console.log(repeatPassword);
+    //TODO ADD VALIDATION
+    dispatch(authActions.signUp({ email: email, password: password }));
   };
 
   return (

@@ -1,17 +1,19 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import withAuth from '../hoc/withAuth/withAuth';
+import { selectors as authSelectors } from '../redux/slices/auth';
 import { AuthStackComponent } from './navigators/AuthStack';
 import { MainStackComponent } from './navigators/MainStack';
 
 const Navigation = () => {
-  //TODO CHANGE MOCKED isAuthenticated
-  const isAuthenticated = false;
+  const currentUser = useSelector(authSelectors.selectUser);
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? <MainStackComponent /> : <AuthStackComponent />}
+      {currentUser ? <MainStackComponent /> : <AuthStackComponent />}
     </NavigationContainer>
   );
 };
 
-export default Navigation;
+export default withAuth(Navigation);
