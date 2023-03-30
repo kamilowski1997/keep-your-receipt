@@ -6,6 +6,7 @@ import { TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
+import SecureTextInput from '../../../components/common/SecureTextInput/SecureTextInput';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_IN_SCREEN'>;
 
@@ -24,10 +25,9 @@ const SignInScreen = ({ navigation }: Props) => {
           placeholder={t('email')}
           style={styles.textInput}
         />
-        <TextInput
+        <SecureTextInput
           mode="outlined"
           placeholder={t('password')}
-          secureTextEntry
           style={styles.textInput}
         />
         <Button
