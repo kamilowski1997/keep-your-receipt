@@ -1,4 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import {
+  Keyboard,
+  ScrollView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
 import Button from '../../../components/common/Button/Button';
@@ -30,39 +36,49 @@ const SignUpScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.inputsContainer}>
-        <TextInput
-          mode="outlined"
-          placeholder={t('email')}
-          value={email}
-          onChangeText={setEmail}
-        />
-        <SecureTextInput
-          mode="outlined"
-          placeholder={t('password')}
-          value={password}
-          onChangeText={setPassword}
-        />
-        <SecureTextInput
-          mode="outlined"
-          placeholder={t('repeatPassword')}
-          secureTextEntry
-          value={repeatPassword}
-          onChangeText={setRepeatPassword}
-        />
-        <Button mode={'text'} onPress={navigateToSignIn}>
-          {t('alreadyHaveAnAccount')}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.inputsContainer}
+          showsVerticalScrollIndicator={false}>
+          <TextInput
+            mode="outlined"
+            placeholder={t('email')}
+            value={email}
+            onChangeText={setEmail}
+            style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
+          />
+          <SecureTextInput
+            mode="outlined"
+            placeholder={t('password')}
+            value={password}
+            onChangeText={setPassword}
+            style={styles.textInput}
+          />
+          <SecureTextInput
+            mode="outlined"
+            placeholder={t('repeatPassword')}
+            secureTextEntry
+            value={repeatPassword}
+            onChangeText={setRepeatPassword}
+            style={styles.textInput}
+          />
+          <Button
+            mode={'text'}
+            onPress={navigateToSignIn}
+            style={styles.navigateToSignInButton}>
+            {t('alreadyHaveAnAccount')}
+          </Button>
+        </ScrollView>
+
+        <Button
+          mode={'contained'}
+          onPress={onSignUpButtonPress}
+          style={styles.signUpButton}>
+          {t('signUp')}
         </Button>
       </View>
-
-      <Button
-        mode={'contained'}
-        onPress={onSignUpButtonPress}
-        style={styles.signUpButton}>
-        {t('signUp')}
-      </Button>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -78,5 +94,14 @@ const styles = StyleSheet.create({
   signUpButton: {
     width: '100%',
   },
-  inputsContainer: {},
+  inputsContainer: {
+    alignItems: 'center',
+  },
+  textInput: {
+    width: '100%',
+    marginBottom: 16,
+  },
+  navigateToSignInButton: {
+    marginTop: 16,
+  },
 });

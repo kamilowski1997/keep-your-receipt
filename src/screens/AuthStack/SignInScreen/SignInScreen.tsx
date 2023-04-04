@@ -1,4 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import {
+  Keyboard,
+  ScrollView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import Button from '../../../components/common/Button/Button';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
@@ -28,37 +34,41 @@ const SignInScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.inputsContainer}>
-        <TextInput
-          mode="outlined"
-          placeholder={t('email')}
-          value={email}
-          onChangeText={setEmail}
-          style={styles.textInput}
-        />
-        <SecureTextInput
-          mode="outlined"
-          placeholder={t('password')}
-          value={password}
-          onChangeText={setPassword}
-          style={styles.textInput}
-        />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.inputsContainer}
+          showsVerticalScrollIndicator={false}>
+          <TextInput
+            mode="outlined"
+            placeholder={t('email')}
+            value={email}
+            onChangeText={setEmail}
+            style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
+          />
+          <SecureTextInput
+            mode="outlined"
+            placeholder={t('password')}
+            value={password}
+            onChangeText={setPassword}
+            style={styles.textInput}
+          />
+          <Button
+            mode={'text'}
+            onPress={navigateToSignUp}
+            style={styles.navigateToSignUpButton}>
+            {t('dontHaveAnAccountYet')}
+          </Button>
+        </ScrollView>
+
         <Button
-          mode={'text'}
-          onPress={navigateToSignUp}
-          style={styles.navigateToSignUpButton}>
-          {t('dontHaveAnAccountYet')}
+          mode={'contained'}
+          onPress={onSignInButtonPress}
+          style={styles.signInButton}>
+          {t('signIn')}
         </Button>
       </View>
-
-      <Button
-        mode={'contained'}
-        onPress={onSignInButtonPress}
-        style={styles.signInButton}>
-        {t('signIn')}
-      </Button>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -76,7 +86,6 @@ const styles = StyleSheet.create({
   },
   inputsContainer: {
     alignItems: 'center',
-    marginTop: 32,
   },
   textInput: {
     width: '100%',
