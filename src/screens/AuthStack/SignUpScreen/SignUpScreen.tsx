@@ -15,6 +15,7 @@ import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
 import SecureTextInput from '../../../components/common/SecureTextInput/SecureTextInput';
 import { useDispatch } from '../../../redux/store';
 import { actions as authActions } from '../../../redux/slices/auth';
+import { getDynamicFontSize } from '../../../consts/fonts';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
@@ -66,7 +67,8 @@ const SignUpScreen = ({ navigation }: Props) => {
           <Button
             mode={'text'}
             onPress={navigateToSignIn}
-            style={styles.navigateToSignInButton}>
+            style={styles.navigateToSignInButton}
+            labelStyle={styles.navigateToSignInButtonLabel}>
             {t('alreadyHaveAnAccount')}
           </Button>
         </ScrollView>
@@ -103,5 +105,10 @@ const styles = StyleSheet.create({
   },
   navigateToSignInButton: {
     marginTop: 16,
+  },
+  navigateToSignInButtonLabel: {
+    fontSize: getDynamicFontSize(16),
+    lineHeight: getDynamicFontSize(19),
+    fontWeight: '600',
   },
 });
