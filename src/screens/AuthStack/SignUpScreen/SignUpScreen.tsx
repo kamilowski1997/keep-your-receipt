@@ -15,7 +15,7 @@ import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
 import SecureTextInput from '../../../components/common/SecureTextInput/SecureTextInput';
 import { useDispatch } from '../../../redux/store';
 import { actions as authActions } from '../../../redux/slices/auth';
-import { getDynamicFontSize } from '../../../consts/fonts';
+import { DefaultFont, getDynamicFontSize } from '../../../consts/fonts';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   navigateToSignInButtonLabel: {
+    fontFamily: DefaultFont.w600,
     fontSize: getDynamicFontSize(16),
     lineHeight: getDynamicFontSize(19),
-    fontWeight: '600',
   },
 });
