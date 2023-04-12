@@ -67,8 +67,7 @@ const SignUpScreen = ({ navigation }: Props) => {
           <Button
             mode={'text'}
             onPress={navigateToSignIn}
-            style={styles.navigateToSignInButton}
-            labelStyle={styles.navigateToSignInButtonLabel}>
+            style={styles.navigateToSignInButton}>
             {t('alreadyHaveAnAccount')}
           </Button>
         </ScrollView>
@@ -105,10 +104,5 @@ const styles = StyleSheet.create({
   },
   navigateToSignInButton: {
     marginTop: 16,
-  },
-  navigateToSignInButtonLabel: {
-    fontFamily: DefaultFont.w600,
-    fontSize: getDynamicFontSize(16),
-    lineHeight: getDynamicFontSize(19),
   },
 });
