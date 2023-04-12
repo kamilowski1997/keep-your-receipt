@@ -14,8 +14,8 @@ import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
 import SecureTextInput from '../../../components/common/TextInput/SecureTextInput/SecureTextInput';
 import { useDispatch } from '../../../redux/store';
 import { actions as authActions } from '../../../redux/slices/auth';
-import { DefaultFont, getDynamicFontSize } from '../../../consts/fonts';
 import TextInput from '../../../components/common/TextInput/TextInput';
+import { colors } from '../../../consts/colors';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: defaultHorizontalMargin,
     justifyContent: 'space-between',
     marginBottom: 26,
+    backgroundColor: colors.white,
   },
   signUpButton: {
     width: '100%',
