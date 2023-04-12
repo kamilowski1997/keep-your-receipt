@@ -8,13 +8,13 @@ import {
 import React, { useState } from 'react';
 import Button from '../../../components/common/Button/Button';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
-import { TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../../navigation/navigators/AuthStack';
-import SecureTextInput from '../../../components/common/SecureTextInput/SecureTextInput';
 import { useDispatch } from '../../../redux/store';
 import { actions as authActions } from '../../../redux/slices/auth';
+import SecureTextInput from '../../../components/common/TextInput/SecureTextInput/SecureTextInput';
+import TextInput from '../../../components/common/TextInput/TextInput';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_IN_SCREEN'>;
 

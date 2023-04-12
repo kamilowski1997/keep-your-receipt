@@ -3,6 +3,7 @@ import {
   TextInput as PaperTextInput,
   TextInputProps as PaperTextInputProps,
 } from 'react-native-paper';
+import TextInput from '../TextInput';
 
 export interface SecureTextInputProps extends PaperTextInputProps {}
 
@@ -14,7 +15,7 @@ const SecureTextInput = ({ ...props }: SecureTextInputProps) => {
   };
 
   return (
-    <PaperTextInput
+    <TextInput
       {...props}
       secureTextEntry={isEntrySecured}
       right={
