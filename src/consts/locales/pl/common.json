@@ -4,5 +4,9 @@
     "home": "Twoje paragony",
     "signIn": "Zaloguj się",
     "signUp": "Zarejestruj się"
+  },
+  "tooltip": {
+    "logout": "Wyloguj",
+    "return": "Cofnij"
   }
 }

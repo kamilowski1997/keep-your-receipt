@@ -4,5 +4,9 @@
     "home": "Receipts",
     "signIn": "Sign In",
     "signUp": "Sign Up"
+  },
+  "tooltip": {
+    "logout": "Logout",
+    "return": "Return"
   }
 }

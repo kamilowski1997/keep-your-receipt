@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SignInScreen from '../../screens/AuthStack/SignInScreen/SignInScreen';
 import SignUpScreen from '../../screens/AuthStack/SignUpScreen/SignUpScreen';
+import { CommonScreenOptions } from '../CommonScreenOptions';
 
 export type AuthStackParamList = {
   SIGN_IN_SCREEN: undefined;
@@ -17,7 +18,7 @@ export const AuthStackComponent = () => {
   });
 
   return (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator screenOptions={CommonScreenOptions}>
       <AuthStack.Screen
         name={'SIGN_IN_SCREEN'}
         component={SignInScreen}

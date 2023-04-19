@@ -1,24 +1,37 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Button from '../../../components/common/Button/Button';
-import auth from '@react-native-firebase/auth';
+import { MainStackParamList } from '../../../navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { defaultHorizontalMargin } from '../../../consts/sizes';
+import { colors } from '../../../consts/colors';
 
-const HomeScreen = () => {
+type Props = NativeStackScreenProps<MainStackParamList, 'HOME_SCREEN'>;
+
+const HomeScreen = ({ navigation }: Props) => {
   const { t } = useTranslation('common');
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>{t('hello')}</Text>
       <Button
         mode="contained"
         onPress={() => {
-          auth().signOut();
+          navigation.push('HOME_SCREEN');
         }}>
-        {'Logout'}
+        {'push home screen'}
       </Button>
     </View>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: defaultHorizontalMargin,
+    backgroundColor: colors.white,
+  },
+});

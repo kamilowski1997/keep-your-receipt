@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: defaultHorizontalMargin,
     justifyContent: 'space-between',
-    marginBottom: 26,
+    paddingBottom: 26,
     backgroundColor: colors.white,
   },
   signInButton: {
