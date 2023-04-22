@@ -53,17 +53,17 @@ const SignInScreen = ({ navigation }: Props) => {
           showsVerticalScrollIndicator={false}>
           <TextInput
             mode="outlined"
-            placeholder={t('email')}
+            label={t('email')}
             value={email}
             onChangeText={setEmail}
             style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
           />
           <SecureTextInput
             mode="outlined"
-            placeholder={t('password')}
             value={password}
             onChangeText={setPassword}
             style={styles.textInput}
+            label={t('password')}
           />
           <Button
             mode={'text'}

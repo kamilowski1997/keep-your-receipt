@@ -54,21 +54,21 @@ const SignUpScreen = ({ navigation }: Props) => {
           showsVerticalScrollIndicator={false}>
           <TextInput
             mode="outlined"
-            placeholder={t('email')}
+            label={t('email')}
             value={email}
             onChangeText={setEmail}
             style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
           />
           <SecureTextInput
             mode="outlined"
-            placeholder={t('password')}
+            label={t('password')}
             value={password}
             onChangeText={setPassword}
             style={styles.textInput}
           />
           <SecureTextInput
             mode="outlined"
-            placeholder={t('repeatPassword')}
+            label={t('repeatPassword')}
             secureTextEntry
             value={repeatPassword}
             onChangeText={setRepeatPassword}
