@@ -19,6 +19,9 @@ import { colors } from '../../../consts/colors';
 import ScreenBlockerContext from '../../../contexts/ScreenBlockingLoadingContext/ScreenBlockerContext';
 import { useSelector } from 'react-redux';
 import { selectSignUpState } from '../../../redux/slices/auth/selectors';
+import { isEqual } from 'lodash';
+import { validateSignUp } from '../../../utils/validators/auth';
+import { HelperText } from 'react-native-paper';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
@@ -31,14 +34,34 @@ const SignUpScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
+
+  const clearError = (inputName: string) => () => {
+    setErrors(current => {
+      return { ...current, [inputName]: '' };
+    });
+  };
 
   const navigateToSignIn = () => {
     navigation.navigate('SIGN_IN_SCREEN');
   };
 
   const onSignUpButtonPress = () => {
-    //TODO ADD VALIDATION
-    dispatch(authActions.signUp({ email: email, password: password }));
+    const validationErrors = validateSignUp(
+      email.trim(),
+      password,
+      repeatPassword,
+    );
+    setErrors(validationErrors);
+    if (
+      isEqual(validationErrors, { email: '', password: '', repeatPassword })
+    ) {
+      dispatch(authActions.signUp({ email: email, password: password }));
+    }
   };
 
   useEffect(() => {
@@ -61,6 +84,9 @@ const SignUpScreen = ({ navigation }: Props) => {
               styles.textInput,
               { marginTop: 32 },
             ])}
+            helperText={errors.email}
+            error={errors.email !== ''}
+            onFocus={clearError('email')}
           />
           <SecureTextInput
             mode="outlined"
@@ -68,6 +94,9 @@ const SignUpScreen = ({ navigation }: Props) => {
             value={password}
             onChangeText={setPassword}
             containerStyle={styles.textInput}
+            helperText={errors.password}
+            error={errors.password !== ''}
+            onFocus={clearError('password')}
           />
           <SecureTextInput
             mode="outlined"
@@ -76,9 +105,14 @@ const SignUpScreen = ({ navigation }: Props) => {
             value={repeatPassword}
             onChangeText={setRepeatPassword}
             containerStyle={styles.textInput}
-            helperText={t('passwordShouldContainAtLeastSixCharacters')}
-            helperTextType="info"
+            helperText={errors.repeatPassword}
+            error={errors.repeatPassword !== ''}
+            onFocus={clearError('repeatPassword')}
           />
+          <HelperText type="info" style={styles.passwordHelperText}>
+            {t('passwordShouldContainAtLeastSixCharacters')}
+          </HelperText>
+
           <Button
             mode={'text'}
             onPress={navigateToSignIn}
@@ -121,5 +155,8 @@ const styles = StyleSheet.create({
   },
   navigateToSignInButton: {
     marginTop: 16,
+  },
+  passwordHelperText: {
+    alignSelf: 'flex-start',
   },
 });

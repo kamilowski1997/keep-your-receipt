@@ -19,6 +19,8 @@ import { colors } from '../../../consts/colors';
 import ScreenBlockerContext from '../../../contexts/ScreenBlockingLoadingContext/ScreenBlockerContext';
 import { useSelector } from 'react-redux';
 import { selectSignInState } from '../../../redux/slices/auth/selectors';
+import { validateSignIn } from '../../../utils/validators/auth';
+import { isEqual } from 'lodash';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_IN_SCREEN'>;
 
@@ -30,14 +32,24 @@ const SignInScreen = ({ navigation }: Props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({ email: '', password: '' });
+
+  const clearError = (inputName: string) => () => {
+    setErrors(current => {
+      return { ...current, [inputName]: '' };
+    });
+  };
 
   const navigateToSignUp = () => {
     navigation.navigate('SIGN_UP_SCREEN');
   };
 
   const onSignInButtonPress = () => {
-    //TODO ADD VALIDATION
-    dispatch(authActions.signIn({ email: email, password: password }));
+    const validationErrors = validateSignIn(email.trim(), password);
+    setErrors(validationErrors);
+    if (isEqual(validationErrors, { email: '', password: '' })) {
+      dispatch(authActions.signIn({ email: email, password: password }));
+    }
   };
 
   useEffect(() => {
@@ -60,6 +72,9 @@ const SignInScreen = ({ navigation }: Props) => {
               styles.textInput,
               { marginTop: 32 },
             ])}
+            helperText={errors.email}
+            error={errors.email !== ''}
+            onFocus={clearError('email')}
           />
           <SecureTextInput
             mode="outlined"
@@ -67,6 +82,9 @@ const SignInScreen = ({ navigation }: Props) => {
             onChangeText={setPassword}
             label={t('password')}
             containerStyle={styles.textInput}
+            helperText={errors.password}
+            error={errors.password !== ''}
+            onFocus={clearError('password')}
           />
 
           <Button
