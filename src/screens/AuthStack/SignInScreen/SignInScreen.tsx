@@ -86,6 +86,7 @@ const SignInScreen = ({ navigation }: Props) => {
             error={errors.password !== ''}
             onFocus={clearError('password')}
           />
+          {/* TODO ADD LOGIN ERRORS HANDLING  */}
 
           <Button
             mode={'text'}

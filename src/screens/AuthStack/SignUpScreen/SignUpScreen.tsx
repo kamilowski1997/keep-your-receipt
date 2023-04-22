@@ -113,6 +113,8 @@ const SignUpScreen = ({ navigation }: Props) => {
             {t('passwordShouldContainAtLeastSixCharacters')}
           </HelperText>
 
+          {/* TODO ADD REGISTER ERRORS HANDLING  */}
+
           <Button
             mode={'text'}
             onPress={navigateToSignIn}
