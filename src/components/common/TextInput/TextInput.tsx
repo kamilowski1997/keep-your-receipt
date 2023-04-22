@@ -1,26 +1,42 @@
 import React from 'react';
 import {
+  HelperText,
   TextInput as PaperTextInput,
   TextInputProps as PaperTextInputProps,
 } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { DefaultFont, getDynamicFontSize } from '../../../consts/fonts';
 
-export interface TextInputProps extends PaperTextInputProps {}
+export interface TextInputProps extends PaperTextInputProps {
+  helperText?: string;
+  helperTextType?: 'error' | 'info';
+  containerStyle?: ViewStyle;
+}
 
-const TextInput = ({ style, ...props }: TextInputProps) => {
+const TextInput = ({
+  style,
+  helperText,
+  helperTextType = 'error',
+  containerStyle,
+  ...props
+}: TextInputProps) => {
   return (
-    <PaperTextInput
-      theme={{
-        fonts: {
-          bodyLarge: {
-            fontFamily: DefaultFont.w500,
+    <View style={containerStyle}>
+      <PaperTextInput
+        theme={{
+          fonts: {
+            bodyLarge: {
+              fontFamily: DefaultFont.w500,
+            },
           },
-        },
-      }}
-      style={StyleSheet.compose(styles.textInput, style)}
-      {...props}
-    />
+        }}
+        style={StyleSheet.compose(styles.textInput, style)}
+        {...props}
+      />
+      {helperText && (
+        <HelperText type={helperTextType}>{helperText}</HelperText>
+      )}
+    </View>
   );
 };
 

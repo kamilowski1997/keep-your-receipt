@@ -56,15 +56,19 @@ const SignInScreen = ({ navigation }: Props) => {
             label={t('email')}
             value={email}
             onChangeText={setEmail}
-            style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
+            containerStyle={StyleSheet.flatten([
+              styles.textInput,
+              { marginTop: 32 },
+            ])}
           />
           <SecureTextInput
             mode="outlined"
             value={password}
             onChangeText={setPassword}
-            style={styles.textInput}
             label={t('password')}
+            containerStyle={styles.textInput}
           />
+
           <Button
             mode={'text'}
             onPress={navigateToSignUp}

@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import {
-  TextInput as PaperTextInput,
-  TextInputProps as PaperTextInputProps,
-} from 'react-native-paper';
-import TextInput from '../TextInput';
+import { TextInput as PaperTextInput } from 'react-native-paper';
+import TextInput, { TextInputProps } from '../TextInput';
 
-export interface SecureTextInputProps extends PaperTextInputProps {}
+export interface SecureTextInputProps extends TextInputProps {}
 
 const SecureTextInput = ({ ...props }: SecureTextInputProps) => {
   const [isEntrySecured, setIsEntrySecured] = useState(true);

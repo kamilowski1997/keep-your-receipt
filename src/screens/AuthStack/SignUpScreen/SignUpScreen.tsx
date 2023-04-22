@@ -57,14 +57,17 @@ const SignUpScreen = ({ navigation }: Props) => {
             label={t('email')}
             value={email}
             onChangeText={setEmail}
-            style={StyleSheet.flatten([styles.textInput, { marginTop: 32 }])}
+            containerStyle={StyleSheet.flatten([
+              styles.textInput,
+              { marginTop: 32 },
+            ])}
           />
           <SecureTextInput
             mode="outlined"
             label={t('password')}
             value={password}
             onChangeText={setPassword}
-            style={styles.textInput}
+            containerStyle={styles.textInput}
           />
           <SecureTextInput
             mode="outlined"
@@ -72,7 +75,9 @@ const SignUpScreen = ({ navigation }: Props) => {
             secureTextEntry
             value={repeatPassword}
             onChangeText={setRepeatPassword}
-            style={styles.textInput}
+            containerStyle={styles.textInput}
+            helperText={t('passwordShouldContainAtLeastSixCharacters')}
+            helperTextType="info"
           />
           <Button
             mode={'text'}
