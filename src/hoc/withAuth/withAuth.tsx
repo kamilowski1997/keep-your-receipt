@@ -1,10 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
 import { useDispatch } from '../../redux/store';
 import { actions } from '../../redux/slices/auth';
+import ScreenBlockerContext from '../../contexts/ScreenBlockingLoadingContext/ScreenBlockerContext';
 
 const withAuth = (Component: FC<any>) => (props: any) => {
   const dispatch = useDispatch();
+  const { setScreenBlocker } = useContext(ScreenBlockerContext);
 
   useEffect(() => {
     auth().onAuthStateChanged(user => {
@@ -13,8 +15,9 @@ const withAuth = (Component: FC<any>) => (props: any) => {
       } else {
         dispatch(actions.clearUser());
       }
+      setScreenBlocker && setScreenBlocker({ isOpen: false });
     });
-  }, [dispatch]);
+  }, [dispatch, setScreenBlocker]);
 
   return <Component {...props} />;
 };

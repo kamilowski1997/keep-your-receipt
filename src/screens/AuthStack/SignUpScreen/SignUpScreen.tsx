@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from '../../../components/common/Button/Button';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
 import { useTranslation } from 'react-i18next';
@@ -16,12 +16,17 @@ import { useDispatch } from '../../../redux/store';
 import { actions as authActions } from '../../../redux/slices/auth';
 import TextInput from '../../../components/common/TextInput/TextInput';
 import { colors } from '../../../consts/colors';
+import ScreenBlockerContext from '../../../contexts/ScreenBlockingLoadingContext/ScreenBlockerContext';
+import { useSelector } from 'react-redux';
+import { selectSignUpState } from '../../../redux/slices/auth/selectors';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_UP_SCREEN'>;
 
 const SignUpScreen = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('auth');
+  const { setScreenBlocker } = useContext(ScreenBlockerContext);
+  const signUpState = useSelector(selectSignUpState);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,6 +40,11 @@ const SignUpScreen = ({ navigation }: Props) => {
     //TODO ADD VALIDATION
     dispatch(authActions.signUp({ email: email, password: password }));
   };
+
+  useEffect(() => {
+    setScreenBlocker &&
+      setScreenBlocker({ isOpen: signUpState.loading, withLoader: true });
+  }, [signUpState, setScreenBlocker]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -75,6 +85,7 @@ const SignUpScreen = ({ navigation }: Props) => {
         <Button
           mode={'contained'}
           onPress={onSignUpButtonPress}
+          loading={signUpState.loading}
           style={styles.signUpButton}>
           {t('signUp')}
         </Button>

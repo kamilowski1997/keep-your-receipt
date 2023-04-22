@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from '../../../components/common/Button/Button';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
 import { useTranslation } from 'react-i18next';
@@ -16,12 +16,17 @@ import { actions as authActions } from '../../../redux/slices/auth';
 import SecureTextInput from '../../../components/common/TextInput/SecureTextInput/SecureTextInput';
 import TextInput from '../../../components/common/TextInput/TextInput';
 import { colors } from '../../../consts/colors';
+import ScreenBlockerContext from '../../../contexts/ScreenBlockingLoadingContext/ScreenBlockerContext';
+import { useSelector } from 'react-redux';
+import { selectSignInState } from '../../../redux/slices/auth/selectors';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SIGN_IN_SCREEN'>;
 
 const SignInScreen = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('auth');
+  const { setScreenBlocker } = useContext(ScreenBlockerContext);
+  const signInState = useSelector(selectSignInState);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,10 +34,16 @@ const SignInScreen = ({ navigation }: Props) => {
   const navigateToSignUp = () => {
     navigation.navigate('SIGN_UP_SCREEN');
   };
+
   const onSignInButtonPress = () => {
     //TODO ADD VALIDATION
     dispatch(authActions.signIn({ email: email, password: password }));
   };
+
+  useEffect(() => {
+    setScreenBlocker &&
+      setScreenBlocker({ isOpen: signInState.loading, withLoader: true });
+  }, [signInState, setScreenBlocker]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -65,6 +76,7 @@ const SignInScreen = ({ navigation }: Props) => {
         <Button
           mode={'contained'}
           onPress={onSignInButtonPress}
+          loading={signInState.loading}
           style={styles.signInButton}>
           {t('signIn')}
         </Button>
