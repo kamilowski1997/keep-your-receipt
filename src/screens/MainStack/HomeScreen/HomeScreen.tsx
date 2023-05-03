@@ -6,6 +6,7 @@ import { MainStackParamList } from '../../../navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
 import { colors } from '../../../consts/colors';
+import ReceiptsList from '../../../components/ReceiptsList/ReceiptsList';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'HOME_SCREEN'>;
 
@@ -14,7 +15,6 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text>{t('hello')}</Text>
       <Button
         mode="contained"
         onPress={() => {
@@ -22,6 +22,7 @@ const HomeScreen = ({ navigation }: Props) => {
         }}>
         {'push home screen'}
       </Button>
+      <ReceiptsList />
     </View>
   );
 };
