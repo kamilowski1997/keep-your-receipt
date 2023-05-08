@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { actions } from '../index';
 import { mockedReceiptsList } from '../../../../consts/mocks/receiptsList';
+import dayjs from 'dayjs';
 
 const getReceiptsList = createAsyncThunk(
   'receipts/getAllList',
@@ -13,6 +14,7 @@ const getReceiptsList = createAsyncThunk(
       });
 
       const receiptsList = mockedReceiptsList;
+      receiptsList.sort((a, b) => dayjs(b.purchaseDate).diff(a.purchaseDate));
 
       thunkApi.dispatch(actions.getReceiptsListSuccess(receiptsList));
     } catch (error: any) {
