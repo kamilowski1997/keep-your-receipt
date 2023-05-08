@@ -13,10 +13,12 @@ const getReceiptsList = createAsyncThunk(
         setTimeout(resolve, 2000);
       });
 
-      const receiptsList = mockedReceiptsList;
-      receiptsList.sort((a, b) => dayjs(b.purchaseDate).diff(a.purchaseDate));
+      const receiptsList = mockedReceiptsList.slice();
+      const sortedReceiptsList = receiptsList.sort((a, b) =>
+        dayjs(b.purchaseDate).diff(a.purchaseDate),
+      );
 
-      thunkApi.dispatch(actions.getReceiptsListSuccess(receiptsList));
+      thunkApi.dispatch(actions.getReceiptsListSuccess(sortedReceiptsList));
     } catch (error: any) {
       console.error(error);
       thunkApi.dispatch(

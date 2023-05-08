@@ -29,6 +29,7 @@ const ReceiptsList = ({
             colors={[colors.primary]}
           />
         }
+        contentContainerStyle={styles.flatListContentContainer}
       />
     </View>
   );
@@ -39,5 +40,8 @@ export default ReceiptsList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  flatListContentContainer: {
+    paddingBottom: 100,
   },
 });

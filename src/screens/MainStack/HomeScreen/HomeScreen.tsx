@@ -11,6 +11,7 @@ import {
 } from '../../../redux/slices/receipts';
 import { useDispatch } from '../../../redux/store';
 import { useSelector } from 'react-redux';
+import AddNewButton from '../../../components/AddNewButton/AddNewButton';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'HOME_SCREEN'>;
 
@@ -26,12 +27,19 @@ const HomeScreen = ({}: Props) => {
     dispatch(receiptsActions.getReceiptsList());
   }, [dispatch]);
 
+  const onReceiptsListRefresh = () => {
+    dispatch(receiptsActions.getReceiptsList());
+  };
+
   return (
     <View style={styles.container}>
       <ReceiptsList
         receiptsList={receiptsList}
         refreshing={getReceiptsListState.loading}
-        onRefresh={() => dispatch(receiptsActions.getReceiptsList())}
+        onRefresh={onReceiptsListRefresh}
+      />
+      <AddNewButton
+      // TODO ADD ONPRESS onPress={() => {}}
       />
     </View>
   );
