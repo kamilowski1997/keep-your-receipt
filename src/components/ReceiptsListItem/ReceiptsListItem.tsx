@@ -1,20 +1,20 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { ReceiptsListItemProps } from '../../utils/interfaces/receipts';
+import { Receipt } from '../../utils/interfaces/receipts';
 import { colors } from '../../consts/colors';
 import { DefaultFont, getDynamicFontSize } from '../../consts/fonts';
 import { ShopIcon } from '../../assets/icons';
+import NoImagePlaceholder from '../NoImagePlaceholder/NoImagePlaceholder';
 import dayjs from 'dayjs';
 
 type Props = {
-  item: ReceiptsListItemProps;
+  item: Receipt;
 };
 
 const ReceiptsListItem = ({ item }: Props) => {
   return (
     <TouchableOpacity style={styles.container}>
-      {/* TODO CHANGE IMAGE PLACEHOLDER */}
-      <View style={styles.image} />
+      <NoImagePlaceholder />
       <View style={styles.mainSection}>
         <View style={styles.infoColumn}>
           <Text style={styles.nameText}>{item.name}</Text>
@@ -40,13 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  image: {
-    width: 50,
-    height: 50,
-    backgroundColor: colors.primary,
-    borderRadius: 8,
-    marginRight: 16,
-  },
+
   mainSection: {
     flex: 1,
     flexDirection: 'row',
