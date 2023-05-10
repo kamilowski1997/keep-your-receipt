@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Receipt } from '../../utils/interfaces/receipts';
 import { colors } from '../../consts/colors';
@@ -6,6 +6,7 @@ import { DefaultFont, getDynamicFontSize } from '../../consts/fonts';
 import { ShopIcon } from '../../assets/icons';
 import NoImagePlaceholder from '../NoImagePlaceholder/NoImagePlaceholder';
 import dayjs from 'dayjs';
+import AppText from '../common/AppText/AppText';
 
 type Props = {
   item: Receipt;
@@ -17,17 +18,17 @@ const ReceiptsListItem = ({ item }: Props) => {
       <NoImagePlaceholder />
       <View style={styles.mainSection}>
         <View style={styles.infoColumn}>
-          <Text style={styles.nameText}>{item.name}</Text>
+          <AppText style={styles.nameText}>{item.name}</AppText>
           <View style={styles.shopRow}>
             <View style={styles.shopIconWrapper}>
               <Image style={styles.shopIcon} source={ShopIcon} />
             </View>
-            <Text style={styles.shopText}>{item.shop}</Text>
+            <AppText style={styles.shopText}>{item.shop}</AppText>
           </View>
         </View>
-        <Text style={styles.purchaseDateText}>
+        <AppText style={styles.purchaseDateText}>
           {dayjs(item.purchaseDate).format('DD/MM/YYYY')}
-        </Text>
+        </AppText>
       </View>
     </TouchableOpacity>
   );

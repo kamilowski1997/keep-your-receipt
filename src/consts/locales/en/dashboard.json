@@ -1,0 +1,7 @@
+{
+  "receiptsList": {
+    "listIsEmpty": "List is empty.",
+    "addYourFirstReceipt": "Add your first receipt",
+    "orPullDownToRefreshList": "or pull down to refresh list."
+  }
+}
