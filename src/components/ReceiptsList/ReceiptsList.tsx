@@ -32,7 +32,7 @@ const ReceiptsList = ({
       }}>
       <FlatList
         data={receiptsList}
-        renderItem={ReceiptsListItem}
+        renderItem={props => <ReceiptsListItem {...props} />}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
         refreshControl={

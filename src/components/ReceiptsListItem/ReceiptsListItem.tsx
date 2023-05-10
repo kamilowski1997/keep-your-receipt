@@ -7,14 +7,20 @@ import { ShopIcon } from '../../assets/icons';
 import NoImagePlaceholder from '../NoImagePlaceholder/NoImagePlaceholder';
 import dayjs from 'dayjs';
 import AppText from '../common/AppText/AppText';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   item: Receipt;
 };
 
 const ReceiptsListItem = ({ item }: Props) => {
+  const { navigate } = useNavigation();
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigate('EDIT_RECEIPT_SCREEN');
+      }}>
       <NoImagePlaceholder />
       <View style={styles.mainSection}>
         <View style={styles.infoColumn}>

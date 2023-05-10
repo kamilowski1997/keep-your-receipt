@@ -3,7 +3,9 @@
   "screenTitles": {
     "home": "Receipts",
     "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "addReceipt": "New receipt",
+    "editReceipt": "Edit receipt"
   },
   "tooltip": {
     "logout": "Logout",

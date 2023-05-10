@@ -15,7 +15,7 @@ import AddNewButton from '../../../components/AddNewButton/AddNewButton';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'HOME_SCREEN'>;
 
-const HomeScreen = ({}: Props) => {
+const HomeScreen = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   const getReceiptsListState = useSelector(
@@ -31,6 +31,10 @@ const HomeScreen = ({}: Props) => {
     dispatch(receiptsActions.getReceiptsList());
   };
 
+  const onAddNewButtonPress = () => {
+    navigation.navigate('ADD_RECEIPT_SCREEN');
+  };
+
   return (
     <View style={styles.container}>
       <ReceiptsList
@@ -38,9 +42,7 @@ const HomeScreen = ({}: Props) => {
         refreshing={getReceiptsListState.loading}
         onRefresh={onReceiptsListRefresh}
       />
-      <AddNewButton
-      // TODO ADD ONPRESS onPress={() => {}}
-      />
+      <AddNewButton onPress={onAddNewButtonPress} />
     </View>
   );
 };

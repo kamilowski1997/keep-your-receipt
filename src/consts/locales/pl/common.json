@@ -3,7 +3,9 @@
   "screenTitles": {
     "home": "Twoje paragony",
     "signIn": "Zaloguj się",
-    "signUp": "Zarejestruj się"
+    "signUp": "Zarejestruj się",
+    "addReceipt": "Nowy paragon",
+    "editReceipt": "Edycja paragonu"
   },
   "tooltip": {
     "logout": "Wyloguj",
