@@ -1,0 +1,11 @@
+{
+  "placeholders": {
+    "name": "Name",
+    "purchaseDate": "Purchase date",
+    "shop": "Shop",
+    "daysForReturn": "Days for return",
+    "yearsOfWarranty": "Years of warranty",
+    "description": "Description"
+  },
+  "save": "Save"
+}

@@ -1,0 +1,11 @@
+{
+  "placeholders": {
+    "name": "Nazwa",
+    "purchaseDate": "Data zakupu",
+    "shop": "Sklep",
+    "daysForReturn": "Dni na zwrot",
+    "yearsOfWarranty": "Lat gwarancji",
+    "description": "Opis"
+  },
+  "save": "Zapisz"
+}

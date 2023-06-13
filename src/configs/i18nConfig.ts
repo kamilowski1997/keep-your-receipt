@@ -4,8 +4,8 @@ import i18next, {
   InitOptions,
 } from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { enAuth, enCommon, enDashboard } from '../consts/locales/en';
-import { plAuth, plCommon, plDashboard } from '../consts/locales/pl';
+import { enAuth, enCommon, enDashboard, enReceipt } from '../consts/locales/en';
+import { plAuth, plCommon, plDashboard, plReceipt } from '../consts/locales/pl';
 import { getDeviceLocaleShortCode } from '../utils/getDeviceLocales';
 
 export const DEFAULT_NAMESPACE = 'common';
@@ -17,6 +17,7 @@ declare module 'i18next' {
       common: typeof plCommon;
       auth: typeof plAuth;
       dashboard: typeof plDashboard;
+      receipt: typeof plReceipt;
     };
     returnNull: false;
   }
@@ -26,12 +27,14 @@ const enResources = {
   common: enCommon,
   auth: enAuth,
   dashboard: enDashboard,
+  receipt: enReceipt,
 };
 
 const plResources = {
   common: plCommon,
   auth: plAuth,
   dashboard: plDashboard,
+  receipt: plReceipt,
 };
 
 const resources: Resource = {
@@ -55,7 +58,7 @@ const initOptions: InitOptions = {
   compatibilityJSON: 'v3',
   fallbackLng: ['en'],
   nonExplicitSupportedLngs: true,
-  ns: ['common', 'auth', 'dashboard'],
+  ns: ['common', 'auth', 'dashboard', 'receipt'],
   defaultNS: DEFAULT_NAMESPACE,
   resources,
   returnNull: false,
