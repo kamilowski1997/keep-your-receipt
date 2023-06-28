@@ -65,3 +65,5 @@ yarn-error.log
 # Firebase env
 google-services.json
 
+# testing
+/coverage
