@@ -11,9 +11,9 @@
     "android-clean": "cd android && ./gradlew clean && cd .."
   },
   "dependencies": {
-    "@react-native-firebase/app": "^17.3.2",
-    "@react-native-firebase/auth": "^17.3.2",
-    "@react-native-firebase/firestore": "^17.4.3",
+    "@react-native-firebase/app": "^18.1.0",
+    "@react-native-firebase/auth": "^18.1.0",
+    "@react-native-firebase/firestore": "^18.1.0",
     "@react-native/metro-config": "^0.72.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
