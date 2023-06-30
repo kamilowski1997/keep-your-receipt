@@ -15,6 +15,7 @@ import Button from '../../../components/common/Button/Button';
 import { getDeviceLocaleShortCode } from '../../../utils/getDeviceLocales';
 import DatePickerInput from '../../../components/common/DatePickerInput/DatePickerInput';
 import Checkbox from '../../../components/common/Checkbox/Checkbox';
+import { setInputStateWithNumericOnlyValidation } from '../../../utils/validators/inputs';
 
 const AddReceiptScreen = () => {
   const { t } = useTranslation('receipt');
@@ -45,8 +46,8 @@ const AddReceiptScreen = () => {
     });
   };
 
-  const onSaveButtonPress = () => {
-    console.log('save');
+  const onSubmitButtonPress = () => {
+    console.log('submit');
   };
 
   return (
@@ -93,36 +94,42 @@ const AddReceiptScreen = () => {
             onPress={() => {
               setReturnChecked(current => !current);
             }}
-            label="Return"
+            label={t('labels.returnCheckbox')}
           />
           <TextInput
             mode="outlined"
             label={t('placeholders.daysForReturn')}
             value={daysForReturn}
-            onChangeText={setDaysForReturn}
+            onChangeText={setInputStateWithNumericOnlyValidation(
+              setDaysForReturn,
+            )}
             containerStyle={styles.textInput}
             helperText={errors.daysForReturn}
             error={errors.daysForReturn !== ''}
             onFocus={clearError('daysForReturn')}
             disabled={!returnChecked}
+            inputMode="decimal"
           />
           <Checkbox
             status={warrantyChecked ? 'checked' : 'unchecked'}
             onPress={() => {
               setWarrantyChecked(current => !current);
             }}
-            label="Warranty"
+            label={t('labels.warrantyCheckbox')}
           />
           <TextInput
             mode="outlined"
             label={t('placeholders.yearsOfWarranty')}
             value={yearsOfWarranty}
-            onChangeText={setYearsOfWarranty}
+            onChangeText={setInputStateWithNumericOnlyValidation(
+              setYearsOfWarranty,
+            )}
             containerStyle={styles.textInput}
             helperText={errors.yearsOfWarranty}
             error={errors.yearsOfWarranty !== ''}
             onFocus={clearError('yearsOfWarranty')}
             disabled={!warrantyChecked}
+            inputMode="decimal"
           />
           <TextInput
             mode="outlined"
@@ -139,11 +146,11 @@ const AddReceiptScreen = () => {
         </ScrollView>
         <Button
           mode={'contained'}
-          onPress={onSaveButtonPress}
+          onPress={onSubmitButtonPress}
           // loading={loading}
           // disabled
-          style={styles.saveButton}>
-          {t('save')}
+          style={styles.submitButton}>
+          {t('submit')}
         </Button>
       </View>
     </TouchableWithoutFeedback>
@@ -162,7 +169,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 26,
   },
-  saveButton: {
+  submitButton: {
     width: '100%',
     position: 'absolute',
     bottom: 20,

@@ -7,5 +7,9 @@
     "yearsOfWarranty": "Lat gwarancji",
     "description": "Opis"
   },
-  "save": "Zapisz"
+  "submit": "Zapisz",
+  "labels": {
+    "returnCheckbox": "Zwrot",
+    "warrantyCheckbox": "Gwarancja"
+  }
 }

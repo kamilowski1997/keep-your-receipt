@@ -7,5 +7,9 @@
     "yearsOfWarranty": "Years of warranty",
     "description": "Description"
   },
-  "save": "Save"
+  "submit": "Submit",
+  "labels": {
+    "returnCheckbox": "Return",
+    "warrantyCheckbox": "Warranty"
+  }
 }
