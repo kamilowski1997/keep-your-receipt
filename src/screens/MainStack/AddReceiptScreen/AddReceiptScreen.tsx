@@ -5,15 +5,46 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import { defaultHorizontalMargin } from '../../../consts/sizes';
 import { colors } from '../../../consts/colors';
 import TextInput from '../../../components/common/TextInput/TextInput';
 import { useTranslation } from 'react-i18next';
 import Button from '../../../components/common/Button/Button';
+import { getDeviceLocaleShortCode } from '../../../utils/getDeviceLocales';
+import DatePickerInput from '../../../components/common/DatePickerInput/DatePickerInput';
 
 const AddReceiptScreen = () => {
   const { t } = useTranslation('receipt');
+
+  const [name, setName] = useState('');
+  const [purchaseDate, setPurchaseDate] = useState<Date | undefined>(
+    dayjs().toDate(),
+  );
+  const [shop, setShop] = useState('');
+  const [daysForReturn, setDaysForReturn] = useState('');
+  const [yearsOfWarranty, setYearsOfWarranty] = useState('');
+  const [description, setDescription] = useState('');
+
+  const [errors, setErrors] = useState({
+    name: '',
+    purchaseDate: '',
+    shop: '',
+    daysForReturn: '',
+    yearsOfWarranty: '',
+    description: '',
+  });
+
+  const clearError = (inputName: string) => () => {
+    setErrors(current => {
+      return { ...current, [inputName]: '' };
+    });
+  };
+
+  const onSaveButtonPress = () => {
+    console.log('save');
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -24,71 +55,76 @@ const AddReceiptScreen = () => {
           <TextInput
             mode="outlined"
             label={t('placeholders.name')}
-            // value={email}
-            // onChangeText={setEmail}
+            value={name}
+            onChangeText={setName}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
+            helperText={errors.name}
+            error={errors.name !== ''}
+            onFocus={clearError('name')}
           />
-          <TextInput
-            mode="outlined"
+          <DatePickerInput
+            locale={getDeviceLocaleShortCode()}
             label={t('placeholders.purchaseDate')}
-            // value={email}
-            // onChangeText={setEmail}
+            value={purchaseDate}
+            onChange={d => setPurchaseDate(d)}
+            inputMode="start"
+            mode="outlined"
+            helperText={errors.purchaseDate}
+            error={errors.purchaseDate !== ''}
+            onFocus={clearError('purchaseDate')}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
           />
+
           <TextInput
             mode="outlined"
             label={t('placeholders.shop')}
-            // value={email}
-            // onChangeText={setEmail}
+            value={shop}
+            onChangeText={setShop}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
+            helperText={errors.shop}
+            error={errors.shop !== ''}
+            onFocus={clearError('shop')}
           />
           <TextInput
             mode="outlined"
             label={t('placeholders.daysForReturn')}
-            // value={email}
-            // onChangeText={setEmail}
+            value={daysForReturn}
+            onChangeText={setDaysForReturn}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
+            helperText={errors.daysForReturn}
+            error={errors.daysForReturn !== ''}
+            onFocus={clearError('daysForReturn')}
+            disabled
           />
           <TextInput
             mode="outlined"
             label={t('placeholders.yearsOfWarranty')}
-            // value={email}
-            // onChangeText={setEmail}
+            value={yearsOfWarranty}
+            onChangeText={setYearsOfWarranty}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
+            helperText={errors.yearsOfWarranty}
+            error={errors.yearsOfWarranty !== ''}
+            onFocus={clearError('yearsOfWarranty')}
+            disabled
           />
           <TextInput
             mode="outlined"
             label={t('placeholders.description')}
             multiline
             numberOfLines={5}
-            // value={email}
-            // onChangeText={setEmail}
+            value={description}
+            onChangeText={setDescription}
             containerStyle={styles.textInput}
-            // helperText={errors.email}
-            // error={errors.email !== ''}
-            // onFocus={clearError('email')}
+            helperText={errors.description}
+            error={errors.description !== ''}
+            onFocus={clearError('description')}
           />
         </ScrollView>
         <Button
           mode={'contained'}
-          // onPress={onSignInButtonPress}
-          // loading={signInState.loading}
-          disabled
+          onPress={onSaveButtonPress}
+          // loading={loading}
+          // disabled
           style={styles.saveButton}>
           {t('save')}
         </Button>
