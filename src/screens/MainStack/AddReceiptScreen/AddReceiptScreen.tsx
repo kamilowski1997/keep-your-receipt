@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import Button from '../../../components/common/Button/Button';
 import { getDeviceLocaleShortCode } from '../../../utils/getDeviceLocales';
 import DatePickerInput from '../../../components/common/DatePickerInput/DatePickerInput';
+import Checkbox from '../../../components/common/Checkbox/Checkbox';
 
 const AddReceiptScreen = () => {
   const { t } = useTranslation('receipt');
@@ -26,6 +27,8 @@ const AddReceiptScreen = () => {
   const [daysForReturn, setDaysForReturn] = useState('');
   const [yearsOfWarranty, setYearsOfWarranty] = useState('');
   const [description, setDescription] = useState('');
+  const [returnChecked, setReturnChecked] = useState(false);
+  const [warrantyChecked, setWarrantyChecked] = useState(false);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -85,6 +88,13 @@ const AddReceiptScreen = () => {
             error={errors.shop !== ''}
             onFocus={clearError('shop')}
           />
+          <Checkbox
+            status={returnChecked ? 'checked' : 'unchecked'}
+            onPress={() => {
+              setReturnChecked(current => !current);
+            }}
+            label="Return"
+          />
           <TextInput
             mode="outlined"
             label={t('placeholders.daysForReturn')}
@@ -94,7 +104,14 @@ const AddReceiptScreen = () => {
             helperText={errors.daysForReturn}
             error={errors.daysForReturn !== ''}
             onFocus={clearError('daysForReturn')}
-            disabled
+            disabled={!returnChecked}
+          />
+          <Checkbox
+            status={warrantyChecked ? 'checked' : 'unchecked'}
+            onPress={() => {
+              setWarrantyChecked(current => !current);
+            }}
+            label="Warranty"
           />
           <TextInput
             mode="outlined"
@@ -105,7 +122,7 @@ const AddReceiptScreen = () => {
             helperText={errors.yearsOfWarranty}
             error={errors.yearsOfWarranty !== ''}
             onFocus={clearError('yearsOfWarranty')}
-            disabled
+            disabled={!warrantyChecked}
           />
           <TextInput
             mode="outlined"
